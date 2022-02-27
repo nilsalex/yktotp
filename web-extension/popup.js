@@ -9,7 +9,7 @@ document.getElementById('getTotp').addEventListener('submit', async (e) => {
 
   const key = e.target.elements.totpKey.value;
 
-  document.getElementById('code').innerText = 'getting OTP ... (touch Yubikey?)';
+  document.getElementById('code').innerText = 'getting OTP ... (touch YubiKey?)';
 
   chrome.runtime.sendMessage(key, displayResult);
 });
