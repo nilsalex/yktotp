@@ -16,6 +16,8 @@ Browser extension to retrieve an OTP from a YubiKey.
 **The extension is in proof-of-concept-state, but a certain subset of the intended functionality
 is already working:**
 
+![Alt Text](media/demo.gif)
+
 Press `Alt+T` in order to activate the extension. A popup will show where the name of the OTP
 has to be entered. Submit with `Enter` and wait for the response, which will be shown as text
 underneath the input field.
