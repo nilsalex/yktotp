@@ -1,7 +1,20 @@
 window.onload = () => document.getElementById('totpKey').focus();
 
 const displayResult = (result) => {
-  document.getElementById('code').innerText = result.code ?? JSON.stringify(result);
+  const node = document.getElementById('code');
+
+  if (result.code) {
+    node.innerText = result.code;
+
+    const selection = window.getSelection();
+    const range = document.createRange();
+
+    selection.removeAllRanges();
+    range.selectNodeContents(node);
+    selection.addRange(range);
+  } else {
+    node.innerText = JSON.stringify(result);
+  }
 };
 
 document.getElementById('getTotp').addEventListener('submit', async (e) => {
