@@ -5,12 +5,8 @@ let state = {
     returnedKey: "",
     availableAccounts: {},
     error: undefined,
-    filterEntered: "",
-    debug: ""
+    filterEntered: ""
 }
-
-let nextStateUpdate = undefined
-let oldState = undefined
 
 const handleCodeResponse = (response) => {
     if (response.error) {
@@ -33,32 +29,14 @@ const handleAccountsResponse = (response) => {
     }
 }
 
-const commitNewStateAndRender = (oldState, newState) => {
-    debug("commit new state" +  JSON.stringify(newState));
-
+const setState = (newState) => {
+    const oldState = state;
     state = {
         ...state,
         ...newState,
     }
     render();
     componentsDidUpdate(oldState, state);
-}
-
-const setState = (newState) => {
-    debug("new state:" + JSON.stringify(newState));
-    if (nextStateUpdate === undefined) {
-        oldState = state;
-        setTimeout(() => {
-            commitNewStateAndRender(oldState, nextStateUpdate);
-            nextStateUpdate = undefined;
-        }, 100);
-    }
-    nextStateUpdate = { ...nextStateUpdate, ...newState };
-}
-
-const debug = (message) => {
-    state.debug = state.debug + "<br><br>" + message
-    document.getElementById('debug').innerHTML = state.debug
 }
 
 const componentsDidUpdate = (oldState, newState) => {
@@ -69,7 +47,6 @@ const componentsDidUpdate = (oldState, newState) => {
         selection.removeAllRanges();
         range.selectNodeContents(document.getElementById('code'));
         selection.addRange(range);
-        debug("Copied to clipboard");
     }
 }
 
@@ -92,7 +69,6 @@ const displayError = (error) => {
 const displayCode = (selectedKey) => {
     const node = document.getElementById('code');
     node.innerText = selectedKey;
-    debug("rendered displayed key")
 };
 
 const displayListOfAccounts = (accounts, selectedAccount) => {
