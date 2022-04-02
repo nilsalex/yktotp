@@ -1,6 +1,6 @@
 window.onload = () => document.getElementById('totpKey').focus();
 
-let state = {
+let globalState = {
     selectedAccount: "",
     returnedKey: "",
     availableAccounts: {},
@@ -32,13 +32,13 @@ const handleAccountsResponse = (response) => {
 }
 
 const setState = (newState) => {
-    oldState = state;
-    state = {
-        ...state,
+    oldState = globalState;
+    globalState = {
+        ...globalState,
         ...newState,
     }
-    render(state);
-    componentsDidUpdate(oldState, state);
+    render(globalState);
+    componentsDidUpdate(oldState, globalState);
 }
 
 const componentsDidUpdate = (oldState, newState) => {
@@ -55,7 +55,7 @@ const componentsDidUpdate = (oldState, newState) => {
 const render = (state) => {
     displayError(state.error);
     displayCode(state.returnedKey)
-    displayListOfAccounts(state.availableAccounts)
+    displayListOfAccounts(state.availableAccounts, state.filterEntered)
 }
 
 const displayError = (error) => {
@@ -74,12 +74,12 @@ const displayCode = (selectedKey) => {
     }
 };
 
-const displayListOfAccounts = (accounts, selectedAccount) => {
+const displayListOfAccounts = (accounts, filterEntered, selectedAccount) => {
     const node = document.getElementById('accounts');
 
     node.replaceChildren(
         ...Object.keys(accounts)
-            .filter(account => account.toLowerCase().includes(state.filterEntered.toLowerCase()))
+            .filter(account => account.toLowerCase().includes(filterEntered.toLowerCase()))
             .sort()
             .map(account => {
                 const li = document.createElement('li');
