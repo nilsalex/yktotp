@@ -1,8 +1,14 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  chrome.runtime.sendNativeMessage(
-    'de.nilsalex.yktotp',
-    { account: message },
-    (response) => sendResponse(response),
-  );
-  return true;
+    const nativeMessage = {
+        request: message.type,
+        account: message.type === "getOtp" ? message.key : ""
+    };
+
+    chrome.runtime.sendNativeMessage(
+        'de.nilsalex.yktotp',
+        nativeMessage,
+        sendResponse,
+    );
+
+    return true;
 });
