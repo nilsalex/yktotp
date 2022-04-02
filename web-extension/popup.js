@@ -5,6 +5,7 @@ let state = {
     returnedKey: "",
     availableAccounts: {},
     error: undefined,
+    filterEntered: ""
 }
 
 const handleCodeResponse = (response) => {
@@ -29,11 +30,24 @@ const handleAccountsResponse = (response) => {
 }
 
 const setState = (newState) => {
+    const oldState = state;
     state = {
         ...state,
         ...newState,
     }
     render();
+    componentsDidUpdate(oldState, state);
+}
+
+const componentsDidUpdate = (oldState, newState) => {
+    if (oldState.returnedKey !== newState.returnedKey) {
+        const selection = window.getSelection();
+        const range = document.createRange();
+
+        selection.removeAllRanges();
+        range.selectNodeContents(document.getElementById('code'));
+        selection.addRange(range);
+    }
 }
 
 const render = () => {
@@ -49,20 +63,15 @@ const render = () => {
 const displayCode = (selectedKey) => {
     const node = document.getElementById('code');
     node.innerText = selectedKey;
-
-    const selection = window.getSelection();
-    const range = document.createRange();
-
-    selection.removeAllRanges();
-    range.selectNodeContents(node);
-    selection.addRange(range);
 };
 
 const displayListOfAccounts = (accounts, selectedAccount) => {
     const node = document.getElementById('accounts');
 
     node.replaceChildren(
-        ...Object.keys(accounts).map(account => {
+        ...Object.keys(accounts)
+            .filter(account => account.toLowerCase().includes(state.filterEntered.toLowerCase()))
+            .map(account => {
             const li = document.createElement('li');
             li.innerText = accounts[account];
             return li;
@@ -77,6 +86,10 @@ document.getElementById('getTotp').addEventListener('submit', async (e) => {
     document.getElementById('code').innerText = 'getting OTP ... (touch YubiKey?)';
 
     chrome.runtime.sendMessage({ type: "getOtp", key }, handleCodeResponse);
+});
+
+document.getElementById('getTotp').addEventListener('keyup', async (e) => {
+    setState({ filterEntered: e.target.value });
 });
 
 chrome.runtime.sendMessage({ type: "getList" }, handleAccountsResponse);
