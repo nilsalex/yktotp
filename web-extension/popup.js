@@ -51,14 +51,20 @@ const componentsDidUpdate = (oldState, newState) => {
 }
 
 const render = () => {
-    if (state.error) {
-        document.getElementById('error').innerText = JSON.stringify(state)
-        return
-    }
+    displayError(state.error);
     displayCode(state.returnedKey)
     displayListOfAccounts(state.availableAccounts)
 }
 
+const displayError = (error) => {
+    if (!error) {
+        document.getElementById('error').innerText = '';
+    } else if (error.includes("NoMatchingCredential")) {
+        document.getElementById('error').innerText = "No matching credentials found.";
+    } else {
+        document.getElementById('error').innerText = error;
+    }
+}
 
 const displayCode = (selectedKey) => {
     const node = document.getElementById('code');
@@ -72,10 +78,10 @@ const displayListOfAccounts = (accounts, selectedAccount) => {
         ...Object.keys(accounts)
             .filter(account => account.toLowerCase().includes(state.filterEntered.toLowerCase()))
             .map(account => {
-            const li = document.createElement('li');
-            li.innerText = accounts[account];
-            return li;
-        }));
+                const li = document.createElement('li');
+                li.innerText = accounts[account];
+                return li;
+            }));
 };
 
 document.getElementById('getTotp').addEventListener('submit', async (e) => {
