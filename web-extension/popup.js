@@ -8,6 +8,8 @@ let state = {
     filterEntered: ""
 }
 
+let oldState = {}
+
 const handleCodeResponse = (response) => {
     if (response.error) {
         setState({ error: response.error });
@@ -30,12 +32,12 @@ const handleAccountsResponse = (response) => {
 }
 
 const setState = (newState) => {
-    const oldState = state;
+    oldState = state;
     state = {
         ...state,
         ...newState,
     }
-    render();
+    render(state);
     componentsDidUpdate(oldState, state);
 }
 
@@ -50,7 +52,7 @@ const componentsDidUpdate = (oldState, newState) => {
     }
 }
 
-const render = () => {
+const render = (state) => {
     displayError(state.error);
     displayCode(state.returnedKey)
     displayListOfAccounts(state.availableAccounts)
@@ -67,8 +69,9 @@ const displayError = (error) => {
 }
 
 const displayCode = (selectedKey) => {
-    const node = document.getElementById('code');
-    node.innerText = selectedKey;
+    if (oldState.returnedKey !== selectedKey) {
+        document.getElementById('code').innerText = selectedKey;
+    }
 };
 
 const displayListOfAccounts = (accounts, selectedAccount) => {
