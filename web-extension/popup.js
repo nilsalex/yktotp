@@ -77,6 +77,7 @@ const displayListOfAccounts = (accounts, selectedAccount) => {
     node.replaceChildren(
         ...Object.keys(accounts)
             .filter(account => account.toLowerCase().includes(state.filterEntered.toLowerCase()))
+            .sort()
             .map(account => {
                 const li = document.createElement('li');
                 li.innerText = accounts[account];
