@@ -1,0 +1,18 @@
+{
+  "name": "yktotp",
+  "version": "0.1.0",
+  "description": "Get a YubiKey OTP into the browser",
+  "repository": "git@github.com:nilsalex/yktotp.git",
+  "author": "Nils Alex <nils@famalex.de>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist/",
+    "copy-files": "mkdir -p dist && cp src/manifest.json src/popup.html dist/",
+    "build": "yarn run clean && yarn tsc && yarn run copy-files"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.180",
+    "typescript": "^4.6.3"
+  }
+}

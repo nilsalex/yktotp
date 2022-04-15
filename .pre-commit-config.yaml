@@ -3,6 +3,7 @@ repos:
     rev: v4.1.0
     hooks:
     -   id: check-json
+        exclude: tsconfig.json
     -   id: check-yaml
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
