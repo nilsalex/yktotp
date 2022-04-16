@@ -1,4 +1,4 @@
-import { TotpResponse } from "./types";
+import type { TotpResponse } from "./types";
 
 window.onload = () => document.getElementById("totpKey")?.focus();
 

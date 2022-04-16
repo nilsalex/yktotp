@@ -1,4 +1,4 @@
-import { TotpRequest } from "./types";
+import type { TotpRequest } from "./types";
 
 chrome.runtime.onMessage.addListener(
   (message: TotpRequest, sender, callback) => {
