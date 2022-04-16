@@ -1,13 +1,15 @@
+import { TotpResponse } from "./types";
+
 window.onload = () => document.getElementById("totpKey")?.focus();
 
-const displayResult = (result: any) => {
+const displayResult = (result?: TotpResponse) => {
   const node = document.getElementById("code");
 
   if (node == null) {
     return;
   }
 
-  if (result.code) {
+  if (result) {
     node.innerText = result.code;
 
     const selection = window.getSelection();

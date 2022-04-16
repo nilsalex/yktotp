@@ -1,8 +1,12 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  chrome.runtime.sendNativeMessage(
-    "de.nilsalex.yktotp",
-    { account: message },
-    (response) => sendResponse(response)
-  );
-  return true;
-});
+import { TotpRequest } from "./types";
+
+chrome.runtime.onMessage.addListener(
+  (message: TotpRequest, sender, callback) => {
+    chrome.runtime.sendNativeMessage(
+      "de.nilsalex.yktotp",
+      { account: message },
+      (response) => callback(response)
+    );
+    return true;
+  }
+);
