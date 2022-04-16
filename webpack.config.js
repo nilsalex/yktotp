@@ -1,6 +1,7 @@
 const path = require("path");
 
 module.exports = {
+  mode: "production",
   entry: {
     background: "./src/background.ts",
     popup: "./src/popup.ts",
@@ -18,7 +19,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   output: {
-    filename: "[name].[contenthash].bundle.js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
   },
 };

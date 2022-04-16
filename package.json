@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "rm -rf dist/",
     "copy-files": "mkdir -p dist && cp src/manifest.json src/popup.html dist/",
-    "build": "yarn run clean && tsc && yarn run copy-files",
+    "build": "webpack && yarn run copy-files",
     "lint": "eslint . --ext .ts",
     "prettier": "prettier --write ."
   },
