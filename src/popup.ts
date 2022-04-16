@@ -1,7 +1,7 @@
-window.onload = () => document.getElementById('totpKey')?.focus();
+window.onload = () => document.getElementById("totpKey")?.focus();
 
 const displayResult = (result: any) => {
-  const node = document.getElementById('code');
+  const node = document.getElementById("code");
 
   if (node == null) {
     return;
@@ -22,21 +22,22 @@ const displayResult = (result: any) => {
 };
 
 interface TotpFormElements extends HTMLFormControlsCollection {
-  totpKey: HTMLInputElement
+  totpKey: HTMLInputElement;
 }
 
-document.getElementById('getTotp')?.addEventListener('submit', async (e) => {
+document.getElementById("getTotp")?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const key = ((e.target as HTMLFormElement).elements as TotpFormElements).totpKey.value;
+  const key = ((e.target as HTMLFormElement).elements as TotpFormElements)
+    .totpKey.value;
 
-  const displayElement = document.getElementById('code');
+  const displayElement = document.getElementById("code");
 
   if (displayElement == null) {
     return;
   }
 
-  displayElement.innerText = 'getting OTP ... (touch YubiKey?)';
+  displayElement.innerText = "getting OTP ... (touch YubiKey?)";
 
   chrome.runtime.sendMessage(key, displayResult);
 });

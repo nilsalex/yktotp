@@ -9,10 +9,18 @@
   "scripts": {
     "clean": "rm -rf dist/",
     "copy-files": "mkdir -p dist && cp src/manifest.json src/popup.html dist/",
-    "build": "yarn run clean && yarn tsc && yarn run copy-files"
+    "build": "yarn run clean && tsc && yarn run copy-files",
+    "lint": "eslint . --ext .ts",
+    "prettier": "prettier --write ."
   },
   "devDependencies": {
     "@types/chrome": "^0.0.180",
-    "typescript": "^4.6.3"
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.6.2",
+    "typescript": "^4.6.3",
+    "typescript-eslint": "^0.0.1-alpha.0"
   }
 }

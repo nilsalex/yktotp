@@ -6,7 +6,7 @@ Browser extension to retrieve an OTP from a YubiKey.
 
 ## Installation
 
-- Enable *Developer mode* and load the extension as *unpacked extension* as described in the
+- Enable _Developer mode_ and load the extension as _unpacked extension_ as described in the
   [Google Chrome documentation](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked).
 - Install the `yktotp-jsonapi` binary and the corresponding Native Messaging Host manifest
   as described in the [yktotp-jsonapi repository](https://github.com/nilsalex/yktotp-jsonapi#readme).
@@ -24,4 +24,4 @@ underneath the input field.
 
 For a successful response, the YubiKey has to be plugged in and, depending on how the OTP is configured,
 touched. Note that it is not required to enter the whole name of the OTP, any string matching the name is
-fine *as long as there is only one match*.
+fine _as long as there is only one match_.
