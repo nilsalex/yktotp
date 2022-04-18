@@ -1,15 +1,20 @@
-import type { TotpResponse } from "./types";
+import { isCode, TotpResponse } from "./types";
 
 window.onload = () => document.getElementById("totpKey")?.focus();
 
-const displayResult = (result?: TotpResponse) => {
+const displayResult = (result: TotpResponse) => {
   const node = document.getElementById("code");
 
   if (node == null) {
     return;
   }
 
-  if (result) {
+  if (result == null) {
+    node.innerText = "null";
+    return;
+  }
+
+  if (isCode(result)) {
     node.innerText = result.code;
 
     const selection = window.getSelection();
@@ -19,7 +24,7 @@ const displayResult = (result?: TotpResponse) => {
     range.selectNodeContents(node);
     selection?.addRange(range);
   } else {
-    node.innerText = JSON.stringify(result);
+    node.innerText = result.error;
   }
 };
 

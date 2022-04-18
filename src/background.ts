@@ -1,11 +1,17 @@
-import type { TotpRequest } from "./types";
+import type { TotpRequest, TotpResponse } from "./types";
+import MessageSender = chrome.runtime.MessageSender;
+import onMessage = chrome.runtime.onMessage;
 
-chrome.runtime.onMessage.addListener(
-  (message: TotpRequest, sender, callback) => {
+onMessage.addListener(
+  (
+    message: TotpRequest,
+    sender: MessageSender,
+    callback: (response: TotpResponse) => void
+  ) => {
     chrome.runtime.sendNativeMessage(
       "de.nilsalex.yktotp",
       { account: message },
-      (response) => callback(response)
+      callback
     );
     return true;
   }
