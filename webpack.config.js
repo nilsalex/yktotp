@@ -3,8 +3,8 @@ const path = require("path");
 module.exports = {
   mode: "production",
   entry: {
-    background: "./src/background.ts",
-    popup: "./src/popup.ts",
+    background: "./src/background/index.ts",
+    popup: "./src/popup/index.ts",
   },
   module: {
     rules: [

@@ -1,4 +1,4 @@
-import type { TotpRequest, TotpResponse } from "./types";
+import type { TotpRequest, TotpResponse } from "../types";
 import MessageSender = chrome.runtime.MessageSender;
 import onMessage = chrome.runtime.onMessage;
 

@@ -1,4 +1,8 @@
-import { isCode, TotpResponse } from "./types";
+import React from "react";
+import { FC } from "react";
+import { isCode, TotpResponse } from "../types";
+
+export const Popup: FC = () => <div>{"Hello, world!"}</div>;
 
 window.onload = () => document.getElementById("totpKey")?.focus();
 

@@ -3,6 +3,8 @@
     "target": "es2016",
     "rootDir": "./src",
     "outDir": "./build",
+    "jsx": "react",
+    "moduleResolution": "node",
     "isolatedModules": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
