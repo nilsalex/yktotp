@@ -1,8 +1,15 @@
 import React from "react";
 import { FC } from "react";
-import { isCode, TotpResponse } from "../types";
+import { isCode, TotpResponse } from "../../types";
+import { Results } from "./Results";
+import { SearchBar } from "./SearchBar";
 
-export const Popup: FC = () => <div>{"Hello, world!"}</div>;
+export const Popup: FC = () => (
+  <>
+    <SearchBar></SearchBar>
+    <Results></Results>
+  </>
+);
 
 window.onload = () => document.getElementById("totpKey")?.focus();
 
