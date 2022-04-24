@@ -8,8 +8,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf dist/",
-    "copy-files": "mkdir -p dist && cp src/manifest.json src/popup/popup.html dist/",
-    "build": "webpack && yarn run copy-files",
+    "build": "webpack",
     "lint": "eslint . --ext .ts,.tsx",
     "prettier": "prettier --write ."
   },
@@ -19,6 +18,7 @@
     "@types/react-dom": "^18.0.2",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
+    "copy-webpack-plugin": "^10.2.4",
     "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.6.2",
