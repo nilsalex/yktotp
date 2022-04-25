@@ -3,7 +3,7 @@ import { Results } from "./Results";
 import { SearchBar } from "./SearchBar";
 
 export const Popup: FC = () => {
-  const [searchKey, setSearchKey] = useState<string>("");
+  const [searchKey, setSearchKey] = useState("");
 
   return (
     <>
