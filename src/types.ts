@@ -12,6 +12,6 @@ export interface TotpCode extends TotpRequest {
 
 export type TotpResponse = TotpError | TotpCode;
 
-export function isCode(r: TotpResponse): r is TotpCode {
-  return (r as TotpCode).code !== undefined;
+export function isCode(response: TotpResponse): response is TotpCode {
+  return "code" in response;
 }
