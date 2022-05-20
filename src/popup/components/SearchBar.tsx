@@ -1,10 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 
 export interface SearchBarProps {
   setSearchKey: (_: string) => void;
 }
 
-export const SearchBar: FC<SearchBarProps> = (props: SearchBarProps) => {
+export const SearchBar = (props: SearchBarProps) => {
   const [input, setInput] = useState("");
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void =>

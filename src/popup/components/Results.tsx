@@ -1,11 +1,11 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TotpResponse, isCode } from "../../types";
 
 export interface ResultsProps {
   searchKey: string;
 }
 
-export const Results: FC<ResultsProps> = (props: ResultsProps) => {
+export const Results = (props: ResultsProps) => {
   const [result, setResult] = useState("");
 
   const handleResult = (response: TotpResponse): void => {
