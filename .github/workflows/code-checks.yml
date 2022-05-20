@@ -11,5 +11,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: yarn install
-      - run: yarn run prettier
+      - run: yarn run pretty
       - run: yarn run lint
