@@ -20,7 +20,7 @@ export const Results = (props: ResultsProps) => {
 
   useEffect(() => {
     chrome.runtime.sendMessage(props.searchKey, handleResult);
-  });
+  }, [props.searchKey]);
 
   return <span>{result}</span>;
 };
