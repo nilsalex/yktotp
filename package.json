@@ -15,7 +15,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*.{ts,tsx,js,jtsx,yaml,json.md,html}": [
+    "**/*.{ts,tsx,js,jtsx,yaml,json,md,html}": [
       "prettier"
     ],
     "src/**/*.{ts,tsx,js,jsx,html}": [
