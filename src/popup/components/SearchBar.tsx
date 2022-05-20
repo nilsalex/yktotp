@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export interface SearchBarProps {
-  setSearchKey: (_: string) => void;
+  submitSearch: (_: string) => void;
 }
 
 export const SearchBar = (props: SearchBarProps) => {
@@ -12,7 +12,7 @@ export const SearchBar = (props: SearchBarProps) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    props.setSearchKey(input);
+    props.submitSearch(input);
   };
 
   return (
