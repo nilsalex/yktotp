@@ -9,8 +9,18 @@
   "scripts": {
     "clean": "rimraf dist/",
     "build": "webpack",
-    "lint": "eslint . --ext .ts,.tsx",
-    "prettier": "prettier --write ."
+    "lint": "eslint . --ext .ts,.tsx,.html",
+    "lintfix": "eslint . --ext .ts,.tsx,.html --fix",
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jtsx,yaml,json.md,html}": [
+      "prettier"
+    ],
+    "src/**/*.{ts,tsx,js,jsx,html}": [
+      "lintfix"
+    ]
   },
   "devDependencies": {
     "@types/chrome": "^0.0.183",
