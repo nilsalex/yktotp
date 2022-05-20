@@ -11,15 +11,14 @@
     "build": "webpack",
     "lint": "eslint . --ext .ts,.tsx",
     "lintfix": "eslint . --ext .ts,.tsx --fix",
-    "prettier": "prettier --write .",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*.{ts,tsx,js,jtsx,yaml,json,md,html}": [
-      "prettier"
+    "**/*.{ts,tsx,yaml,json,md,html}": [
+      "prettier --write"
     ],
-    "src/**/*.{ts,tsx,js,jsx,html}": [
-      "lintfix"
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix"
     ]
   },
   "dependencies": {

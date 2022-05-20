@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TotpResponse, isCode } from "../../types";
+import { isCode, isTotpResponse } from "../../types";
 
 export interface ResultsProps {
   searchKey: string;
@@ -8,9 +8,9 @@ export interface ResultsProps {
 export const Results = (props: ResultsProps) => {
   const [result, setResult] = useState("");
 
-  const handleResult = (response: TotpResponse): void => {
-    if (response == null) {
-      setResult("null");
+  const handleResult = (response: unknown): void => {
+    if (!isTotpResponse(response)) {
+      setResult("");
     } else if (isCode(response)) {
       setResult(response.code);
     } else {
