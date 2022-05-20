@@ -7,8 +7,8 @@ export const Popup = () => {
 
   return (
     <>
-      <SearchBar setSearchKey={setSearchKey}></SearchBar>
-      {searchKey && <Results searchKey={searchKey}></Results>}
+      <SearchBar setSearchKey={setSearchKey} />
+      {searchKey && <Results searchKey={searchKey} />}
     </>
   );
 };

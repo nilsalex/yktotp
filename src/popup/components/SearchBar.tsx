@@ -23,7 +23,7 @@ export const SearchBar = (props: SearchBarProps) => {
         spellCheck={false}
         value={input}
         onChange={handleChange}
-      ></input>
+      />
     </form>
   );
 };
