@@ -8,11 +8,7 @@ onMessage.addListener(
     sender: MessageSender,
     callback: (response: unknown) => void
   ) => {
-    chrome.runtime.sendNativeMessage(
-      "de.nilsalex.yktotp",
-      { account: message },
-      callback
-    );
+    chrome.runtime.sendNativeMessage("de.nilsalex.yktotp", message, callback);
     return true;
   }
 );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { isCode, isTotpResponse } from "../../types";
+import { TotpRequest, isCode, isTotpResponse } from "../../types";
 
 export interface ResultsProps {
   searchKey: string;
@@ -19,7 +19,10 @@ export const Results = (props: ResultsProps) => {
   };
 
   useEffect(() => {
-    chrome.runtime.sendMessage(props.searchKey, handleResult);
+    chrome.runtime.sendMessage(
+      { type: "Code", account: props.searchKey } as TotpRequest,
+      handleResult
+    );
   }, [props.searchKey]);
 
   return <span>{result}</span>;
