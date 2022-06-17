@@ -17,5 +17,5 @@
   "action": {
     "default_popup": "popup.html"
   },
-  "permissions": ["nativeMessaging"]
+  "permissions": ["nativeMessaging", "clipboardWrite"]
 }

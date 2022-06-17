@@ -12,7 +12,7 @@ export const Results = (props: ResultsProps) => {
     if (!isTotpResponse(response)) {
       setResult("");
     } else if (isCode(response)) {
-      setResult(response.code);
+      (async () => await navigator.clipboard.writeText(response.code))();
     } else {
       setResult(response.error);
     }
