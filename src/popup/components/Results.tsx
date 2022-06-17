@@ -19,6 +19,7 @@ export const Results = (props: ResultsProps) => {
   };
 
   useEffect(() => {
+    setResult("Getting code ... (touch YubiKey?)");
     chrome.runtime.sendMessage(
       { type: "Code", account: props.searchKey } as TotpRequest,
       handleResult

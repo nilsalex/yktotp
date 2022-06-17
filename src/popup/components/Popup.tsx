@@ -7,7 +7,10 @@ export const Popup = () => {
 
   return (
     <>
-      <SearchBar submitSearch={setSearchKey} />
+      <SearchBar
+        submitSearch={setSearchKey}
+        clearSearch={() => setSearchKey("")}
+      />
       {searchKey && <Results searchKey={searchKey} />}
     </>
   );
