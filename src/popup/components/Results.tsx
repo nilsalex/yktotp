@@ -1,5 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TotpRequest, isCode, isTotpResponse } from "../../types";
+
+const selectContent = (element: Node) => {
+  const range = document.createRange();
+  range.selectNodeContents(element);
+  const selection = window.getSelection();
+
+  if (selection) {
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+};
 
 export interface ResultsProps {
   searchKey: string;
@@ -7,11 +18,14 @@ export interface ResultsProps {
 
 export const Results = (props: ResultsProps) => {
   const [result, setResult] = useState("");
+  const resultSpan = useRef<HTMLSpanElement>(null);
 
   const handleResult = (response: unknown): void => {
     if (!isTotpResponse(response)) {
       setResult("");
     } else if (isCode(response)) {
+      setResult(response.code);
+      selectContent(resultSpan.current as Node);
       (async () => await navigator.clipboard.writeText(response.code))();
     } else {
       setResult(response.error);
@@ -26,5 +40,5 @@ export const Results = (props: ResultsProps) => {
     );
   }, [props.searchKey]);
 
-  return <span>{result}</span>;
+  return <span ref={resultSpan}>{result}</span>;
 };
