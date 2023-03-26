@@ -1,34 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 
 export interface SearchBarProps {
-  submitSearch: (_: string) => void;
-  clearSearch: () => void;
+  setSearchKey: (_: string) => void;
 }
 
 export const SearchBar = (props: SearchBarProps) => {
-  const [input, setInput] = useState("");
-
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
-    if (e.currentTarget.value == "") {
-      props.clearSearch();
-    }
-    setInput(e.currentTarget.value);
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    props.submitSearch(input);
+    props.setSearchKey(e.currentTarget.value);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        autoFocus
-        autoComplete={"off"}
-        spellCheck={false}
-        value={input}
-        onChange={handleChange}
-      />
-    </form>
+    <input
+      autoFocus
+      autoComplete={"off"}
+      spellCheck={false}
+      onChange={handleChange}
+    />
   );
 };

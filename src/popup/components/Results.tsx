@@ -1,17 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { TotpRequest, isCode, isTotpResponse } from "../../types";
 
-const selectContent = (element: Node) => {
-  const range = document.createRange();
-  range.selectNodeContents(element);
-  const selection = window.getSelection();
-
-  if (selection) {
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }
-};
-
 export interface ResultsProps {
   searchKey: string;
 }
@@ -25,7 +14,6 @@ export const Results = (props: ResultsProps) => {
       setResult("");
     } else if (isCode(response)) {
       setResult(response.code);
-      selectContent(resultSpan.current as Node);
       (async () => await navigator.clipboard.writeText(response.code))();
     } else {
       setResult(response.error);
