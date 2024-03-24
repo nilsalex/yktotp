@@ -1,0 +1,25 @@
+{
+  "name": "yktotp",
+  "description": "yktotp",
+  "version": "0.1.0",
+  "manifest_version": 3,
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "7e0690d8bb477006c43674c770588d31151bdc16@temporary-addon"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Y"
+      }
+    }
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": ["nativeMessaging", "clipboardWrite"]
+}

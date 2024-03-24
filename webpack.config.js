@@ -27,7 +27,8 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/popup/index.html", to: "popup.html" },
-        { from: "src/manifest.json", to: "manifest.json" },
+        { from: "manifests/firefox-manifest.json", to: "firefox-manifest.json" },
+        { from: "manifests/chrome-manifest.json", to: "chrome-manifest.json" },
       ],
     }),
   ],
