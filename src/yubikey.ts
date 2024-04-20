@@ -1,7 +1,3 @@
-// interface for getting the account list
-// (will be implemented later as a mock for development
-// and as a native messaging call via a background script
-// for production)
 export interface IYubiKey {
   getAccounts(): Promise<string[]>;
   getTOTP(account: string): Promise<string>;
@@ -25,5 +21,23 @@ class FakeYubiKey implements IYubiKey {
   }
 };
 
-export const YubiKey: IYubiKey = import.meta.env.DEV ? new FakeYubiKey() : new FakeYubiKey;
+class NativeMessagingYubiKey implements IYubiKey {
+  getAccounts(): Promise<string[]> {
+    return new Promise(resolve => {
+      chrome.runtime.sendMessage({ type: "AccountList" }, (response) => {
+        resolve(response.accounts);
+      });
+    });
+  }
+
+  getTOTP(account: string): Promise<string> {
+    return new Promise(resolve => {
+      chrome.runtime.sendMessage({ type: "Code", account }, (response) => {
+        resolve(response.code);
+      });
+    });
+  }
+}
+
+export const YubiKey: IYubiKey = import.meta.env.DEV ? new FakeYubiKey() : new NativeMessagingYubiKey();
 
