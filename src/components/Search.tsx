@@ -42,10 +42,8 @@ export function Search({ setSelectedAccount }: SearchProps) {
       const accountListResponse = await YubiKey.getAccounts();
       if ("error" in accountListResponse) {
         setLoadingError(accountListResponse.error);
-        console.log(accountListResponse);
       } else {
         setAccounts(accountListResponse.accounts);
-        console.log(accountListResponse);
       }
       setLoading(false);
     })();
