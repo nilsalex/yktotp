@@ -24,8 +24,17 @@ export function Result({ account }: ResultProps) {
     })();
   }, [account]);
 
-  const value = loading ? 'getting TOTP ... (touch YubiKey?)' : TOTP;
-  const adornment = loading ? <CircularProgress color="inherit" size={20} /> : null;
+  const value = loading ? "getting TOTP ... (touch YubiKey?)" : TOTP;
+  const adornment = loading ? (
+    <CircularProgress color="inherit" size={20} />
+  ) : null;
 
-  return <TextField inputRef={ref} value={value} InputProps={{endAdornment: adornment}}/>;
+  return (
+    <TextField
+      size="small"
+      inputRef={ref}
+      value={value}
+      InputProps={{ endAdornment: adornment }}
+    />
+  );
 }

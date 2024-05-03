@@ -1,37 +1,45 @@
+export interface YubiKeyError {
+  error: string;
+}
+
+export interface AccountListResponse {
+  accounts: string[];
+}
+
 export interface IYubiKey {
-  getAccounts(): Promise<string[]>;
+  getAccounts(): Promise<AccountListResponse | YubiKeyError>;
   getTOTP(account: string): Promise<string>;
 }
 
 class FakeYubiKey implements IYubiKey {
-  getAccounts(): Promise<string[]> {
-    return new Promise(resolve => {
+  getAccounts(): Promise<AccountListResponse | YubiKeyError> {
+    return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(["google", "microsoft", "amazon"]);
+        resolve({ accounts: ["google", "microsoft", "amazon"] });
       }, 2 * 1000);
     });
   }
 
   getTOTP(): Promise<string> {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve("123456");
       }, 2 * 1000);
     });
   }
-};
+}
 
 class NativeMessagingYubiKey implements IYubiKey {
-  getAccounts(): Promise<string[]> {
-    return new Promise(resolve => {
+  getAccounts(): Promise<AccountListResponse | YubiKeyError> {
+    return new Promise((resolve) => {
       chrome.runtime.sendMessage({ type: "AccountList" }, (response) => {
-        resolve(response.accounts);
+        resolve(response);
       });
     });
   }
 
   getTOTP(account: string): Promise<string> {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       chrome.runtime.sendMessage({ type: "Code", account }, (response) => {
         resolve(response.code);
       });
@@ -39,5 +47,9 @@ class NativeMessagingYubiKey implements IYubiKey {
   }
 }
 
-export const YubiKey: IYubiKey = import.meta.env.DEV ? new FakeYubiKey() : new NativeMessagingYubiKey();
-
+export const YubiKey: IYubiKey = Object.prototype.hasOwnProperty.call(
+  window,
+  "chrome",
+)
+  ? new NativeMessagingYubiKey()
+  : new FakeYubiKey();
