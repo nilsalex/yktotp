@@ -16,7 +16,7 @@ export function Result({ account }: ResultProps) {
     setLoading(true);
     setTOTP(null);
 
-    (async () => {
+    void (async () => {
       const result = await YubiKey.getTOTP(account);
       setTOTP(result);
       setLoading(false);

@@ -33,7 +33,7 @@ class NativeMessagingYubiKey implements IYubiKey {
   getAccounts(): Promise<AccountListResponse | YubiKeyError> {
     return new Promise((resolve) => {
       chrome.runtime.sendMessage({ type: "AccountList" }, (response) => {
-        resolve(response);
+        resolve(response as AccountListResponse | YubiKeyError);
       });
     });
   }
@@ -41,7 +41,7 @@ class NativeMessagingYubiKey implements IYubiKey {
   getTOTP(account: string): Promise<string> {
     return new Promise((resolve) => {
       chrome.runtime.sendMessage({ type: "Code", account }, (response) => {
-        resolve(response.code);
+        resolve((response as { code: string }).code);
       });
     });
   }

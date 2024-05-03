@@ -38,7 +38,7 @@ export function Search({ setSelectedAccount }: SearchProps) {
   const ref = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    (async () => {
+    void (async () => {
       const accountListResponse = await YubiKey.getAccounts();
       if ("error" in accountListResponse) {
         setLoadingError(accountListResponse.error);
@@ -52,7 +52,7 @@ export function Search({ setSelectedAccount }: SearchProps) {
   }, []);
 
   useEffect(() => {
-    ref?.current?.select();
+    ref.current?.select();
   }, [ref]);
 
   return (
