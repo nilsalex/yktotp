@@ -20,5 +20,10 @@
   "action": {
     "default_popup": "index.html"
   },
-  "permissions": ["nativeMessaging", "clipboardWrite"]
+  "permissions": ["nativeMessaging", "clipboardWrite"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "extension@yktotp"
+    }
+  }
 }
