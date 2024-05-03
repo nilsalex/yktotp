@@ -1,0 +1,21 @@
+{
+  "name": "yktotp",
+  "description": "yktotp",
+  "version": "0.1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+T"
+      }
+    }
+  },
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["nativeMessaging", "clipboardWrite"]
+}
