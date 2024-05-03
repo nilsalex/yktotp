@@ -21,6 +21,7 @@ export function Result({ account }: ResultProps) {
       setTOTP(result);
       setLoading(false);
       ref.current?.select();
+      await navigator.clipboard.writeText(result);
     })();
   }, [account]);
 
