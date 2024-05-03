@@ -1,48 +1,39 @@
 {
   "name": "yktotp",
-  "version": "0.1.0",
-  "description": "Get a YubiKey OTP into the browser",
-  "repository": "git@github.com:nilsalex/yktotp.git",
-  "author": "Nils Alex <nils@famalex.de>",
-  "license": "MIT",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "clean": "rimraf dist/",
-    "build": "webpack",
-    "lint": "eslint . --ext .ts,.tsx",
-    "lintfix": "eslint . --ext .ts,.tsx --fix",
-    "pretty": "prettier -l .",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "**/*.{ts,tsx,yaml,json,md,html}": [
-      "prettier --write"
-    ],
-    "src/**/*.{ts,tsx}": [
-      "eslint --fix"
-    ]
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lintfix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "prettier": "prettier --write .",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@fontsource/roboto": "^5.0.13",
+    "@mui/icons-material": "^5.15.16",
+    "@mui/material": "^5.15.16",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.263",
-    "@types/react": "^18.2.69",
-    "@types/react-dom": "^18.2.22",
-    "@typescript-eslint/eslint-plugin": "^7.3.1",
-    "@typescript-eslint/parser": "^7.3.1",
-    "copy-webpack-plugin": "^12.0.2",
+    "@types/chrome": "^0.0.267",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.6",
     "prettier": "^3.2.5",
-    "rimraf": "^5.0.5",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.4.3",
-    "typescript-eslint": "^7.3.1",
-    "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4"
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11"
   }
 }
