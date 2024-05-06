@@ -1,14 +1,13 @@
 {
   "name": "yktotp",
   "description": "yktotp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "manifest_version": 3,
   "icons": {
     "128": "icon128.png"
   },
   "background": {
-    "service_worker": "background.js",
-    "scripts": ["background.js"]
+    "service_worker": "background.js"
   },
   "commands": {
     "_execute_action": {
@@ -23,7 +22,8 @@
   "permissions": ["nativeMessaging", "clipboardWrite"],
   "browser_specific_settings": {
     "gecko": {
-      "id": "extension@yktotp"
+      "id": "extension@yktotp",
+      "scripts": ["background.js"]
     }
   }
 }
